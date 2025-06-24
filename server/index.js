@@ -11,6 +11,10 @@ wss.on("connection", ws => {
 
     ws.on("message", data => {
         console.log(`Received data from client: ${data}`);
+
+        const message = data.toString();
+
+        ws.send(message.toUpperCase()); // Sennd back to client now uppercase
     });
 
     //Putting this on the ws single connection and not wss
