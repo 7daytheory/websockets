@@ -9,7 +9,24 @@
     <h1>Websockets Example</h1>
 
     <script>
-        
+        const ws = new WebSocket("ws://localhost:8082"); //ws is fine for dev, but wss is the secure form for proeduction!
+
+        ws.addEventListener("open", () => {
+            console.log("Websocket connected!");
+
+            ws.send("Hey, how's it going"); //Nothing is gravbbing but you can see it in the network tab
+        })
+
+        ws.addEventListener("message", e => {
+            console.log(e);
+
+        })
+
+        //Or you can do it like this with destructuring to get just the data sent
+        ws.addEventListener("message", ({ data }) => {
+            console.log(data);
+        })
+
     </script>
 </body>
 </html>
